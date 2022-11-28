@@ -103,17 +103,16 @@ public class ProjekAkhirKomgraf extends Applet {
         
         // gerbong kereta
         E.setColor(gerbong);
-        E.fillRect(200, 285, 500, 220); // gerbong1
-        E.fillRect(710, 285, 500, 220); // gerbong2
-        E.fillRect(1220, 285, 500, 220); // gerbong3
+        E.fillRoundRect(200, 285, 500, 220, 10, 10); // gerbong1
+        E.fillRoundRect(710, 285, 500, 220, 10, 10); // gerbong2
+        E.fillRoundRect(1220, 285, 500, 220, 10, 10); // gerbong3
         
         E.setColor(Color.DARK_GRAY);
-        E.fillRect(200, 305, 40, 70); // jendela
-        E.fillRect(250, 305, 70, 70); // jendela
-        E.fillRect(600, 305, 70, 70); // jendela
-        
-        E.fillRect(730, 305, 460, 70); // jendela
-        E.fillRect(1240, 305, 460, 70); // jendela
+        E.fillRoundRect(200, 305, 40, 70, 10, 10); // jendela
+        E.fillRoundRect(250, 305, 70, 70, 10, 10); // jendela
+        E.fillRoundRect(600, 305, 70, 70, 10, 10); // jendela
+        E.fillRoundRect(730, 305, 460, 70, 10, 10); // jendela
+        E.fillRoundRect(1240, 305, 460, 70, 10, 10); // jendela
         
         // roda kereta
         E.setColor(Color.DARK_GRAY);
