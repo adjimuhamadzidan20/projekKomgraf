@@ -27,9 +27,8 @@ public class ProjekAkhirKomgraf extends JApplet {
 class panel extends JPanel implements Runnable {
     int x = 0;
     int y = 1200;
-    Thread berjalan = new Thread(this); // funsinya untuk mengaktifkan animasi
+    Thread berjalan = new Thread(this); // untuk mengaktifkan animasi
     // thread = untuk menjalankan aplikasi
-    // t = variabel
      
     public panel() {
         setPreferredSize(new Dimension(900, 480));
@@ -202,5 +201,11 @@ class panel extends JPanel implements Runnable {
         E.fillArc(y+1540, 480, 60, 50, 0, -180);
         E.fillArc(y+1600, 480, 60, 50, 0, -180);
         
+        // copyright name
+        Font copyright = new Font("TimesRoman", Font.BOLD, 12);
+        E.setFont(copyright);
+        E.setColor(Color.WHITE);
+        E.drawString("Adji Muhamad Zidan", 1240, 665);
+        E.drawString("201943501940 - R7X", 1240, 685);
     }
 }
