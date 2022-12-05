@@ -1,10 +1,64 @@
 package projekakhirkomgraf;
 import java.awt.*;
 import java.applet.Applet;
+import javax.swing.JApplet;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 // by adji muhamad zidan
-public class ProjekAkhirKomgraf extends Applet {
-    public void paint (Graphics E) {
+public class ProjekAkhirKomgraf extends JApplet {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setTitle("Projek KomGraf");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JApplet applet = new ProjekAkhirKomgraf();
+        applet.init();
+        frame.getContentPane().add(applet);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    public void init() {
+        JPanel panel = new panel();
+        getContentPane().add(panel);
+    }
+}
+    
+class panel extends JPanel implements Runnable {
+    int x = 0;
+    int y = 1200;
+    Thread berjalan = new Thread(this); // funsinya untuk mengaktifkan animasi
+    // thread = untuk menjalankan aplikasi
+    // t = variabel
+     
+    public panel() {
+        setPreferredSize(new Dimension(900, 480));
+        setBackground(Color.white);
+        berjalan.start(); // memulai animasi
+        // "berjalan" didapat dari inisialisasi dari thread
+    }
+   
+    public void run(){
+        while (true) {
+            if (x <= 3200) { // jauhnya jarak  kereta berjalan
+                y--; // berjalan mulai dari kanan ke arah kiri 
+                x++;
+            } else {
+                x = 0;
+                y = 1200; // posisi awal mulai kereta start
+            }
+            
+            try {
+                repaint(); // untuk mewarnai lagi
+                Thread.sleep(2); // fungsi mengatur kecepatan gerak
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void paintComponent (Graphics E) {
+        super.paintComponent(E);
         // custom warna
         Color pondasi1 = new Color(97, 56, 6);
         Color pondasi2 = new Color(108, 108, 108);
@@ -96,7 +150,7 @@ public class ProjekAkhirKomgraf extends Applet {
         
         // pondasi bawah
         E.setColor(pondasi1);
-        E.fillRect(0, 540, 1500, 120);
+        E.fillRect(0, 540, 1500, 180);
         
         // rel
         E.setColor(Color.BLACK);
@@ -104,49 +158,49 @@ public class ProjekAkhirKomgraf extends Applet {
         
         // gerbong kereta
         E.setColor(gerbong);
-        E.fillRoundRect(200, 285, 500, 220, 10, 10); // gerbong1
-        E.fillRoundRect(710, 285, 500, 220, 10, 10); // gerbong2
-        E.fillRoundRect(1220, 285, 500, 220, 10, 10); // gerbong3
+        E.fillRoundRect(y+200, 285, 500, 220, 10, 10); // gerbong1
+        E.fillRoundRect(y+710, 285, 500, 220, 10, 10); // gerbong2
+        E.fillRoundRect(y+1220, 285, 500, 220, 10, 10); // gerbong3
         
         E.setColor(Color.RED);
-        E.fillRect(200, 400, 500, 15);
-        E.fillRect(200, 420, 500, 15);
+        E.fillRect(y+200, 400, 500, 15);
+        E.fillRect(y+200, 420, 500, 15);
         
-        E.fillRect(710, 400, 500, 15);
-        E.fillRect(710, 420, 500, 15);
+        E.fillRect(y+710, 400, 500, 15);
+        E.fillRect(y+710, 420, 500, 15);
         
-        E.fillRect(1220, 400, 500, 15);
-        E.fillRect(1220, 420, 500, 15);
+        E.fillRect(y+1220, 400, 500, 15);
+        E.fillRect(y+1220, 420, 500, 15);
         
         E.setColor(Color.DARK_GRAY);
-        E.fillRoundRect(200, 305, 40, 70, 10, 10); // jendela
-        E.fillRoundRect(250, 305, 70, 70, 10, 10); // jendela
-        E.fillRoundRect(600, 305, 70, 70, 10, 10); // jendela
-        E.fillRoundRect(730, 305, 460, 70, 10, 10); // jendela
-        E.fillRoundRect(1240, 305, 460, 70, 10, 10); // jendela
+        E.fillRoundRect(y+200, 305, 40, 70, 10, 10); // jendela
+        E.fillRoundRect(y+250, 305, 70, 70, 10, 10); // jendela
+        E.fillRoundRect(y+600, 305, 70, 70, 10, 10); // jendela
+        E.fillRoundRect(y+730, 305, 460, 70, 10, 10); // jendela
+        E.fillRoundRect(y+1240, 305, 460, 70, 10, 10); // jendela
         
         // atap kereta
         E.setColor(atapGerbong);
-        E.fillRect(235, 273, 430, 12);
-        E.fillRect(744, 273, 430, 12);
-        E.fillRect(1255, 273, 430, 12);
+        E.fillRect(y+235, 273, 430, 12);
+        E.fillRect(y+744, 273, 430, 12);
+        E.fillRect(y+1255, 273, 430, 12);
         
         // roda kereta
         E.setColor(Color.DARK_GRAY);
-        E.fillArc(260, 480, 60, 50, 0, -180); // gerbong1
-        E.fillArc(320, 480, 60, 50, 0, -180);
-        E.fillArc(520, 480, 60, 50, 0, -180);
-        E.fillArc(580, 480, 60, 50, 0, -180);
+        E.fillArc(y+260, 480, 60, 50, 0, -180); // gerbong1
+        E.fillArc(y+320, 480, 60, 50, 0, -180);
+        E.fillArc(y+520, 480, 60, 50, 0, -180);
+        E.fillArc(y+580, 480, 60, 50, 0, -180);
         
-        E.fillArc(770, 480, 60, 50, 0, -180); // gerbong2
-        E.fillArc(830, 480, 60, 50, 0, -180);
-        E.fillArc(1030, 480, 60, 50, 0, -180);
-        E.fillArc(1090, 480, 60, 50, 0, -180);
+        E.fillArc(y+770, 480, 60, 50, 0, -180); // gerbong2
+        E.fillArc(y+830, 480, 60, 50, 0, -180);
+        E.fillArc(y+1030, 480, 60, 50, 0, -180);
+        E.fillArc(y+1090, 480, 60, 50, 0, -180);
         
-        E.fillArc(1280, 480, 60, 50, 0, -180); // gerbong3
-        E.fillArc(1340, 480, 60, 50, 0, -180);
-        E.fillArc(1540, 480, 60, 50, 0, -180);
-        E.fillArc(1600, 480, 60, 50, 0, -180);
+        E.fillArc(y+1280, 480, 60, 50, 0, -180); // gerbong3
+        E.fillArc(y+1340, 480, 60, 50, 0, -180);
+        E.fillArc(y+1540, 480, 60, 50, 0, -180);
+        E.fillArc(y+1600, 480, 60, 50, 0, -180);
         
     }
 }
